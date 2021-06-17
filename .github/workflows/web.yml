@@ -18,7 +18,7 @@ on:
       - 'web/**'
       - '.github/workflows/web.yml'
   schedule:
-    # re-run montly to keep image fesh with upstream base images
+    # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'
 
   # Allows you to run this workflow manually from the Actions tab
