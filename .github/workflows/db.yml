@@ -1,4 +1,4 @@
-name: Web build and push
+name: DB build and push
 
 # Controls when the action will run. 
 on:
@@ -7,14 +7,14 @@ on:
     branches:
       - 'main'
     paths:
-      - 'web/**'
-      - '.github/workflows/web.yml'
+      - 'db/**'
+      - '.github/workflows/db.yml'
   pull_request:
     branches:
       - 'main'
     paths:
-      - 'web/**'
-      - '.github/workflows/web.yml'
+      - 'db/**'
+      - '.github/workflows/db.yml'
   schedule:
     # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'
@@ -69,8 +69,8 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            bretfisher/wordsmith-web
-            ghcr.io/bretfisher/wordsmith-web
+            bretfisher/wordsmith-db
+            ghcr.io/bretfisher/wordsmith-db
           flavor: |
             latest=false
           tags: |
