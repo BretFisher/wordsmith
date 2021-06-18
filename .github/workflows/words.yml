@@ -83,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: words
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64 #FIXME: sadly arm/v7 isn't stable in Java land
           builder: ${{ steps.buildx.outputs.name }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
