@@ -1,7 +1,9 @@
 # Kubernetes Wordsmith Demo
 
-
-
+[![Lint Code Base](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml)
+[![Build DB](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml)
+[![Build Words](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml)
+[![Build Web](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml)
 
 Wordsmith is the demo project shown at DockerCon EU 2017 and 2018.
 
