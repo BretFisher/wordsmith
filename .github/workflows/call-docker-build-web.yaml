@@ -8,13 +8,13 @@ on:
       - 'main'
     paths:
       - 'web/**'
-      - '.github/workflows/web.yml'
+      - '.github/workflows/call-docker-build-web.yaml'
   pull_request:
     branches:
       - 'main'
     paths:
       - 'web/**'
-      - '.github/workflows/web.yml'
+      - '.github/workflows/call-docker-build-web.yaml'
   schedule:
     # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'

@@ -8,13 +8,13 @@ on:
       - 'main'
     paths:
       - 'words/**'
-      - '.github/workflows/words.yml'
+      - '.github/workflows/call-docker-build-words.yaml'
   pull_request:
     branches:
       - 'main'
     paths:
       - 'words/**'
-      - '.github/workflows/words.yml'
+      - '.github/workflows/call-docker-build-words.yaml'
   schedule:
     # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'

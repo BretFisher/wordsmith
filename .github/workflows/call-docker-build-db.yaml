@@ -8,13 +8,13 @@ on:
       - 'main'
     paths:
       - 'db/**'
-      - '.github/workflows/db.yml'
+      - '.github/workflows/call-docker-build-db.yaml'
   pull_request:
     branches:
       - 'main'
     paths:
       - 'db/**'
-      - '.github/workflows/db.yml'
+      - '.github/workflows/call-docker-build-db.yaml'
   schedule:
     # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'
