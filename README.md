@@ -2,7 +2,7 @@
 
 [![Lint Code Base](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml)
 [![Build DB](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml)
-[![Build Words](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml)
+[![Build API](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-api.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-api.yaml)
 [![Build Web](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml)
 
 Wordsmith is the demo project originally shown at DockerCon EU 2017 and 2018. It's used to demonstrate how to build and deploy a multi-container app to Compose, Docker Swarm, and Kubernetes.

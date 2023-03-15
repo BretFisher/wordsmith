@@ -1,4 +1,4 @@
-name: Build Words
+name: Build API
 
 # Controls when the action will run. 
 on:
@@ -7,14 +7,14 @@ on:
     branches:
       - 'main'
     paths:
-      - 'words/**'
-      - '.github/workflows/call-docker-build-words.yaml'
+      - 'api/**'
+      - '.github/workflows/call-docker-build-api.yaml'
   pull_request:
     branches:
       - 'main'
     paths:
-      - 'words/**'
-      - '.github/workflows/call-docker-build-words.yaml'
+      - 'api/**'
+      - '.github/workflows/call-docker-build-api.yaml'
   schedule:
     # re-run montly to keep image fresh with upstream base images
     - cron: '0 12 15 * *'
@@ -58,8 +58,8 @@ jobs:
       ### A list of the account/repo names for docker build. List should match what's enabled above
       ### defaults to:
       image-names: |
-        bretfisher/wordsmith-words
-        ghcr.io/bretfisher/wordsmith-words
+        bretfisher/wordsmith-api
+        ghcr.io/bretfisher/wordsmith-api
 
       ### REQUIRED set rules for tagging images, based on special action syntax:
       ### https://github.com/docker/metadata-action#tags-input
@@ -73,7 +73,7 @@ jobs:
       
       ### path to where docker should copy files into image
       ### defaults to root of repository (.)
-      context: words
+      context: api
       
       ### Dockerfile alternate name. Default is Dockerfile (relative to context path)
       # file: Containerfile
