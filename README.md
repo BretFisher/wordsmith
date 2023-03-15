@@ -1,46 +1,49 @@
-# Kubernetes Wordsmith Demo
+# Wordsmith Example App
 
 [![Lint Code Base](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-super-linter.yaml)
 [![Build DB](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-db.yaml)
 [![Build Words](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-words.yaml)
 [![Build Web](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml/badge.svg)](https://github.com/BretFisher/k8s-wordsmith-demo/actions/workflows/call-docker-build-web.yaml)
 
-Wordsmith is the demo project shown at DockerCon EU 2017 and 2018.
+Wordsmith is the demo project originally shown at DockerCon EU 2017 and 2018. It's used to demonstrate how to build and deploy a multi-container app to Compose, Docker Swarm, and Kubernetes.
 
 The demo app runs across three containers:
 
-- [db](db/Dockerfile) - a Postgres database which stores words
+- **[api](api/Dockerfile)** - a Java REST API which serves words read from the database
+- **[web](web/Dockerfile)** - a Go web application that calls the API and builds words into sentences
+- **db** - a Postgres database that stores words
 
-- [words](words/Dockerfile) - a Java REST API which serves words read from the database
+## Architecture
 
-- [web](web/Dockerfile) - a Go web application which calls the API and builds words into sentences:
+![Architecture diagram](architecture.excalidraw.png)
 
-## Build and Run in Docker Compose
+## Build and run in Docker Compose
 
-The only requirement to build and run the app from source is Docker. Clone this repository and use Docker Compose to build all the images. You can use the new V2 Compose with `docker compose` or the classic `docker-compose` CLI:
+The only requirement to build and run the app from source is Docker. Clone this repo and use Docker Compose to build all the images. You can use the new V2 Compose with `docker compose` or the classic `docker-compose` CLI:
 
 ```shell
 docker compose up --build
 ```
 
-> Or you can pull pre-built images from Docker Hub using `docker compose pull`.
+Or you can pull pre-built images from Docker Hub using `docker compose pull`.
 
-## Deploy Using a Kubernetes Manifest
 
-You can deploy the same app to Kubernetes using the [Kubernetes manifest](kube-deployment.yml). That describes the same application in terms of Kubernetes deployments, services and pod specifications.
+## Deploy using Kubernetes manifests
 
-Apply the manifest using `kubectl`:
+You can deploy the same app to Kubernetes using the [Kustomize configuration](./kustomization.yaml). It will define all of the necessary Deployment and Service objects and a ConfigMap to provide the database schema.
+
+Apply the manifest using `kubectl` while at the root of the project:
 
 ```shell
-kubectl apply -f kube-deployment.yml
+kubectl apply -k .
 ```
 
-Now browse to [localhost:8081](http://localhost:8081) and you will see the same site.
+Once the pods are running, browse to http://localhost:8080 and you will see the site.
 
-Docker Desktop includes Kuernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line, so you can work directly with the Kube cluster. Check the services are up, and you should see output like this:
+Docker Desktop includes Kubernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line, so you can work directly with the cluster. Check the services are up, and you should see output like this:
 
-```shell
-$ kubectl get svc
+```text
+kubectl get svc
 NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
 db           ClusterIP      None             <none>        55555/TCP        2m
 kubernetes   ClusterIP      10.96.0.1        <none>        443/TCP          38d
@@ -48,18 +51,16 @@ web          LoadBalancer   10.107.215.211   <pending>     8080:30220/TCP   2m
 words        ClusterIP      None             <none>        55555/TCP        2m
 ```
 
-Check the pods are running, and you should see one pod each for the database and web components, and five pods for the words API - which is specified as the replica count in the compose file:
+Check the pods are running and you should see one pod each for the database and web components and five pods for the words API:
 
-```shell
-$ kubectl get pods
+```text
+kubectl get pods
 NAME                   READY     STATUS    RESTARTS   AGE
 db-8678676c79-h2d99    1/1       Running   0          1m
 web-5d6bfbbd8b-6zbl8   1/1       Running   0          1m
-words-858f6678-6c8kk   1/1       Running   0          1m
-words-858f6678-7bqbv   1/1       Running   0          1m
-words-858f6678-fjdws   1/1       Running   0          1m
-words-858f6678-rrr8c   1/1       Running   0          1m
-words-858f6678-x9zqh   1/1       Running   0          1m
+api-858f6678-6c8kk     1/1       Running   0          1m
+api-858f6678-7bqbv     1/1       Running   0          1m
+api-858f6678-fjdws     1/1       Running   0          1m
+api-858f6678-rrr8c     1/1       Running   0          1m
+api-858f6678-x9zqh     1/1       Running   0          1m
 ```
-
-Then browse to [localhost:8080](http://localhost:8080) to see the site. Each time you refresh the page, you'll see a different sentence generated by the API calls.
