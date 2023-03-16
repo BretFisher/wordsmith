@@ -19,14 +19,13 @@ The demo app runs across three containers:
 
 ## Build and run in Docker Compose
 
-The only requirement to build and run the app from source is Docker. Clone this repo and use Docker Compose to build all the images. You can use the new V2 Compose with `docker compose` or the classic `docker-compose` CLI:
+The only requirement to build and run the app from source is Docker. Clone this repository and use Docker Compose to build all the images. You can use the new V2 Compose with `docker compose` or the classic `docker-compose` CLI:
 
 ```shell
 docker compose up --build
 ```
 
 Or you can pull pre-built images from Docker Hub using `docker compose pull`.
-
 
 ## Deploy using Kubernetes manifests
 
@@ -38,9 +37,9 @@ Apply the manifest using `kubectl` while at the root of the project:
 kubectl apply -k .
 ```
 
-Once the pods are running, browse to http://localhost:8080 and you will see the site.
+Once the pods are running, browse to [localhost:8080](http://localhost:8080) and you will see the site.
 
-Docker Desktop includes Kubernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line, so you can work directly with the cluster. Check the services are up, and you should see output like this:
+Docker Desktop includes Kubernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command-line, so you can work directly with the cluster. Check the services are up, and you should see output like this:
 
 ```text
 kubectl get svc
