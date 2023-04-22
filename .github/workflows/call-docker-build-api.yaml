@@ -48,5 +48,5 @@ jobs:
       image-names: |
         bretfisher/wordsmith-api
         ghcr.io/bretfisher/wordsmith-api
-      context: api
+      context: "{{defaultContext}}:api"
       platforms: linux/amd64,linux/arm64

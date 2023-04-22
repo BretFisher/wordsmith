@@ -47,5 +47,5 @@ jobs:
       image-names: |
         bretfisher/wordsmith-web
         ghcr.io/bretfisher/wordsmith-web
-      context: web
+      context: "{{defaultContext}}:web"
       platforms: linux/amd64,linux/arm64
