@@ -10,10 +10,10 @@ RUN GOOS=linux GOARCH=$TARGETARCH go build dispatcher.go
 
 # RUN
 # defaults to using the target arch image
-FROM alpine
+FROM scratch as run
 
 EXPOSE 80
 CMD ["/dispatcher"]
 
-COPY --from=builder /go/dispatcher /
+COPY --from=builder /go/dispatcher /dispatcher
 COPY static /static/
